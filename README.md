@@ -2,6 +2,10 @@
 
 Official PyTorch implementation and pretrained checkpoints for our **ICLR 2026 Oral** paper, **“Universal Inverse Distillation for Matching Models with Real-Data Supervision (No GANs)”**, which introduces **RealUID**, an adversarial flow-matching distillation approach for **one-step image generation**.
 
+> [Universal Inverse Distillation for Matching Models with Real-Data Supervision (No GANs)](https://arxiv.org/abs/2509.22459),  
+> Nikita Kornilov, David Li, Tikhon Mavrin, Aleksei Leonov, Nikita Gushchin, Evgeny Burnaev, Iaroslav Koshelev, Alexander Korotin  
+> *ICLR 2026 (Oral)* ([arXiv:2509.22459](https://arxiv.org/abs/2509.22459))
+
 ---
 
 ## What’s in this repository
@@ -28,14 +32,12 @@ Datasets:
 mkdir -p model_checkpoints data
 ```
 
-2) Download pretrained checkpoints to `./model_checkpoints/`:
+2) Download [pretrained checkpoints](https://drive.google.com/drive/folders/1PjZPmnk31eUTjbLHddwl8tjGt2apNO_P?usp=sharing) to `./model_checkpoints/`:
 
-- **Google Drive (checkpoints):**
-  https://drive.google.com/drive/folders/1PjZPmnk31eUTjbLHddwl8tjGt2apNO_P?usp=sharing
 
-3) CelebA (only if you run CelebA experiments):
+3) CelebA dataset:
 
-- Download `cut_celeba_full.zip` and extract it to:
+- Download [dataset](https://drive.google.com/drive/folders/1PjZPmnk31eUTjbLHddwl8tjGt2apNO_P?usp=sharing) `cut_celeba_full.zip` and extract it to:
 
 ```bash
 unzip cut_celeba_full.zip -d data/cut_celeba_full
@@ -78,7 +80,7 @@ pip install tensorboard wandb
 
 ```bash
 python3 generate_samples.py \
-  --model_ckpt_path ./model_checkpoints/cifar10_uncond_distil.pt \
+  --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
   --dataset cifar10 \
   --cond uncond \
@@ -90,7 +92,7 @@ python3 generate_samples.py \
 
 ```bash
 python3 generate_samples.py \
-  --model_ckpt_path ./model_checkpoints/cifar10_uncond_FM_400000.pt \
+  --model_ckpt_path /path/to/checkpoint.pt \
   --mode multi_step \
   --dataset cifar10 \
   --cond uncond \
@@ -104,7 +106,7 @@ python3 generate_samples.py \
 
 ```bash
 python3 eval_model.py \
-  --model_ckpt_path ./model_checkpoints/cifar10_uncond_distil.pt \
+  --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
   --dataset cifar10 \
   --cond uncond \
@@ -115,7 +117,7 @@ python3 eval_model.py \
 
 ```bash
 python3 eval_model.py \
-  --model_ckpt_path ./model_checkpoints/cifar10_uncond_FM_400000.pt \
+  --model_ckpt_path /path/to/checkpoint.pt \
   --mode multi_step \
   --dataset cifar10 \
   --cond uncond \
@@ -126,7 +128,7 @@ python3 eval_model.py \
 
 ```bash
 python3 eval_model.py \
-  --model_ckpt_path ./model_checkpoints/celeba_uncond_distil.pt \
+  --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
   --dataset celeba \
   --cond uncond \
@@ -202,20 +204,6 @@ bash run.sh celeba-distil-gan
 bash run.sh cifar10-uncond-distil-finetune
 bash run.sh cifar10-cond-distil-finetune
 ```
-
----
-
-## Checkpoint formats
-
-This matters for sampling/evaluation:
-
-- **Teacher checkpoints** (saved by `train_teacher.py`) contain:
-  - `net_model`, `ema_models`
-  - Use with `--mode multi_step`
-
-- **Distilled checkpoints** (saved by `train_distil.py`) contain:
-  - `gen`, `u`, `ema_gens`
-  - Use with `--mode one_step`
 
 ---
 
