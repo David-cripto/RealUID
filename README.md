@@ -173,7 +173,7 @@ bash run.sh celeba-distil
 Tuning notes:
 
 - You can vary `--alpha` and `--beta` (typically in **[0.85, 1.0]**).
-- We recommend keeping **`beta/alpha ≈ 1`** (e.g. **1.02** or **0.98**).
+- We recommend keeping **`beta/alpha = 0.98 or 1.02`**.
 - The setting `alpha = beta = 1.0` corresponds to the **data-free** case.
 
 ### 3) Distill with GAN loss (optional)
