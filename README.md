@@ -57,17 +57,13 @@ data/cut_celeba_full/
 
 ## Installation
 
-This repo is pure Python. You’ll need PyTorch + a few common libraries.
-
-A minimal setup (example):
+To get started, create a conda environment containing the required dependencies.
 
 ```bash
-# Python 3.9+ recommended
-pip install torch torchvision
-pip install torchcfm torchdyn clean-fid tqdm numpy pillow
-
-# Optional (logging)
-pip install tensorboard wandb
+conda create -n realuid python=3.10
+conda activate realuid
+conda install nvidia/label/cuda-12.1.0::cuda-toolkit
+pip install -r requirements.txt
 ```
 
 ---

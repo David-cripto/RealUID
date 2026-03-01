@@ -33,7 +33,7 @@ if [ "$dataset" = 'cifar10-uncond-teacher' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 20000 \
-    --save_model_step 20000\
+    --save_model_step 20000
 
 
 elif [ "$dataset" = 'cifar10-cond-teacher' ]; then
@@ -48,7 +48,7 @@ elif [ "$dataset" = 'cifar10-cond-teacher' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 20000 \
-    --save_model_step 20000 \
+    --save_model_step 20000 
 
 elif [ "$dataset" = 'celeba-teacher' ]; then
 
@@ -62,7 +62,7 @@ elif [ "$dataset" = 'celeba-teacher' ]; then
     --save_image_step 5000 \
     --num_save_image 36 \
     --fid_step 20000 \
-    --save_model_step 20000 \
+    --save_model_step 20000 
 
 
 elif [ "$dataset" = 'cifar10-uncond-distil' ]; then
@@ -85,7 +85,7 @@ elif [ "$dataset" = 'cifar10-uncond-distil' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 5000 \
-    --save_model_step 10000 \
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'cifar10-cond-distil' ]; then
 
@@ -107,7 +107,7 @@ elif [ "$dataset" = 'cifar10-cond-distil' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 5000 \
-    --save_model_step 10000 \
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'celeba-distil' ]; then
 
@@ -130,10 +130,7 @@ elif [ "$dataset" = 'celeba-distil' ]; then
     --save_image_step 5000 \
     --num_save_image 36 \
     --fid_step 5000 \
-    --save_model_step 10000 \
-
-
-
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'cifar10-uncond-distil-gan' ]; then
 
@@ -160,7 +157,7 @@ elif [ "$dataset" = 'cifar10-uncond-distil-gan' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 5000 \
-    --save_model_step 10000 \
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'cifar10-cond-distil-gan' ]; then
 
@@ -187,7 +184,7 @@ elif [ "$dataset" = 'cifar10-cond-distil-gan' ]; then
     --save_image_step 5000 \
     --num_save_image 100 \
     --fid_step 5000 \
-    --save_model_step 10000 \
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'celeba-distil-gan' ]; then
 
@@ -215,8 +212,7 @@ elif [ "$dataset" = 'celeba-distil-gan' ]; then
     --save_image_step 5000 \
     --num_save_image 36 \
     --fid_step 5000 \
-    --save_model_step 10000 \
-
+    --save_model_step 10000 
 
 elif [ "$dataset" = 'cifar10-uncond-distil-finetune' ]; then
 
@@ -240,7 +236,7 @@ elif [ "$dataset" = 'cifar10-uncond-distil-finetune' ]; then
     --save_image_step 2000 \
     --num_save_image 100 \
     --fid_step 2000 \
-    --save_model_step 2000 \
+    --save_model_step 2000 
 
 elif [ "$dataset" = 'cifar10-cond-distil-finetune' ]; then
 
@@ -264,4 +260,5 @@ elif [ "$dataset" = 'cifar10-cond-distil-finetune' ]; then
     --save_image_step 2000 \
     --num_save_image 100 \
     --fid_step 2000 \
-    --save_model_step 2000 \
+    --save_model_step 2000 
+fi
