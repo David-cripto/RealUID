@@ -30,7 +30,7 @@ parser.add_argument('--exp_name', type=str, default=None, help='name of the subf
 
 parser.add_argument('--model_ckpt_path', type=str, help = 'model checkpoint')
 parser.add_argument('--mode',default='one_step',  choices=['one_step', 'multi_step'], help='one-step mode or flow vector field')
-parser.add_argument('--ema_decay', type=float, default=0.999, help='ema decay which to evaluate if given. if not given the non-ema net is evaluated.')
+parser.add_argument('--ema_decay', type=float, default=None, help='ema decay which to evaluate if given. if not given the non-ema net is evaluated.')
 #dataset
 parser.add_argument('--dataset', default='cifar10',  choices=['cifar10', 'celeba'])
 parser.add_argument('--cond', default='uncond',  choices=['cond', 'uncond'])
