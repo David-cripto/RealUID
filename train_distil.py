@@ -58,7 +58,7 @@ parser.add_argument('--teacher_ema', type=float, default=0.999, help = 'teacher 
 parser.add_argument('--resume_ckpt_path', type=str, default=None, help = 'continue training from checkpoint if chosen')
 
 parser.add_argument('--finetune_ckpt_path', type=str, default=None, help = 'fine-tune the checkpoint if chosen')
-parser.add_argument('--finetune_ema', type=float, default=0.999, help = 'fine-tune ema to select the net from checkpoint')
+parser.add_argument('--finetune_ema', type=float, default=None, help = 'fine-tune ema to select the net from checkpoint')
 
 
 #dataset
