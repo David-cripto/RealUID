@@ -69,7 +69,7 @@ elif [ "$dataset" = 'cifar10-uncond-distil' ]; then
 
     #Vary coefs --alpha, --beta from 0.85 to 1.00. Better keep the ratio beta/alpha = 1.02 or 0.98. 
     #The case alpha = beta = 1.0 is data-free.
-    # Add the extra coef gamma:
+    # Add the extra coef gamma (see General RealUID in the original paper):
     # --gamma 0.92
 
     python3 train_distil.py \
@@ -91,7 +91,7 @@ elif [ "$dataset" = 'cifar10-cond-distil' ]; then
 
     #Vary coefs --alpha, --beta from 0.85 to 1.00. Better keep the ratio beta/alpha = 1.02 or 0.98. 
     #The case alpha = beta = 1.0 is data-free.
-    # Add the extra coef gamma:
+    # Add the extra coef gamma (see General RealUID in the original paper):
     # --gamma 0.98
 
     python3 train_distil.py \
