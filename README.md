@@ -19,8 +19,8 @@ This codebase supports:
 
 Datasets and best checkpoints:
 
-- **CIFAR-10**: unconditional (FID - **1.91**, [link, ema 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link)) + class-conditional (FID - **1.77**, [link](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link))
-- **CelebA**: unconditional (FID - **0.89**, [link](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link)), expects a preprocessed folder of images
+- **CIFAR-10**: unconditional (FID - **1.91**, [link, EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link)) + class-conditional (FID - **1.77**, [link, EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link))
+- **CelebA**: unconditional (FID - **0.89**, [link, EMA 0.999](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link)), expects a preprocessed folder of images
 
 ---
 
@@ -29,7 +29,7 @@ Datasets and best checkpoints:
 1) Create the expected folders:
 
 ```bash
-mkdir -p model_checkpoints data
+mkdir -p model_checkpoints data results
 ```
 
 2) Download [pretrained teacher checkpoints](https://drive.google.com/drive/folders/177Ptl41gfXw5VgZp-ex3l08Lr0dSuiUR?usp=drive_link) to `./model_checkpoints/`:
@@ -168,7 +168,8 @@ bash run.sh celeba-teacher
 bash run.sh cifar10-uncond-distil
 bash run.sh cifar10-cond-distil
 bash run.sh celeba-distil
-```
+``` 
+We provide the combined trained checkpoints with the best FID for each EMA weight: [CIFAR-10 uncond](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (EMA 0.999  - FID **2.23**, EMA 0.9999 - FID **2.44**), [CIFAR-10 cond](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (EMA 0.999  - FID **2.02**, EMA 0.9999 - FID **1.91**) and [CelebA](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link) (EMA 0.999  - FID **0.89**). Note that for diffenent EMA weights, the best FID is achieved at different iterations. 
 
 Tuning notes:
 
@@ -187,12 +188,16 @@ bash run.sh celeba-distil-gan
 - We recommend keeping **`disc_coef/gen_coef ≈ 3`**.
 - You can combine GAN + RealUID by setting `--alpha` and `--beta` to values different from 1.0.
 
-### 4) Fine-tune the best checkpoint with RealUID
+
+
+### 4) Fine-tune the best CIFAR checkpoint with RealUID
 
 1) Put your best distilled checkpoint into `./model_checkpoints/` and name it:
 
 - `cifar10_uncond_distil.pt` or
 - `cifar10_cond_distil.pt`
+
+We use the best checkpoint for [CIFAR-10 uncond EMA 0.999](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (FID **2.23**) and [CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (FID **1.91**).
 
 2) Run fine-tuning:
 
@@ -200,6 +205,8 @@ bash run.sh celeba-distil-gan
 bash run.sh cifar10-uncond-distil-finetune
 bash run.sh cifar10-cond-distil-finetune
 ```
+We provide the fine-tuned checkpoints for [CIFAR-10 uncond EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link) (FID **1.91**) and [CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link) (FID **1.77**).
+
 
 ---
 
