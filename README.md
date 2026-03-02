@@ -12,12 +12,12 @@ Official PyTorch implementation and pretrained checkpoints for our **ICLR 2026 O
 
 This codebase supports:
 
-- **Teacher Flow Matching (FM)** models
-- **One-step distillation** into generators using **RealUID**
+- Training of multi-step **Teacher Flow Matching (FM)** models
+- **Distillation** of multi-step teachers into one-step generators using **RealUID**
 - Optional **RealUID + GAN** training
 - **Sampling** and **FID evaluation** scripts
 
-Datasets and best checkpoints:
+Datasets and the best **one-step** checkpoints:
 
 - **CIFAR-10**: unconditional (FID - **1.91**, [link, EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link)) + class-conditional (FID - **1.77**, [link, EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link))
 - **CelebA**: unconditional (FID - **0.89**, [link, EMA 0.999](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link)), expects a preprocessed folder of images
@@ -174,13 +174,14 @@ bash run.sh cifar10-uncond-distil
 bash run.sh cifar10-cond-distil
 bash run.sh celeba-distil
 ``` 
-We provide the combined trained checkpoints with the best FID for each EMA weight: [CIFAR-10 uncond](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (EMA 0.999  - FID **2.23**, EMA 0.9999 - FID **2.44**), [CIFAR-10 cond](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (EMA 0.999  - FID **2.02**, EMA 0.9999 - FID **1.91**) and [CelebA](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link) (EMA 0.999  - FID **0.89**). Note that for diffenent EMA weights, the best FID is achieved at different iterations. 
+We provide the combined trained checkpoints with the best FID for each EMA weight: [CIFAR-10 uncond](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (EMA 0.999  - FID **2.23**, EMA 0.9999 - FID **2.44**), [CIFAR-10 cond](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (EMA 0.999  - FID **2.02**, EMA 0.9999 - FID **1.91**) and [CelebA](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link) (EMA 0.999  - FID **0.89**). Note that for different EMA weights, the best FID is achieved at different iterations. 
 
 Tuning notes:
 
 - You can vary `--alpha` and `--beta` (typically in **[0.85, 1.0]**).
 - We recommend keeping **`beta/alpha = 0.98 or 1.02`**.
 - The setting `alpha = beta = 1.0` corresponds to the **data-free** case.
+
 
 ### 3) Distill with GAN loss (optional)
 
@@ -202,7 +203,7 @@ bash run.sh celeba-distil-gan
 - `cifar10_uncond_distil.pt` or
 - `cifar10_cond_distil.pt`
 
-We use the best checkpoint for [CIFAR-10 uncond EMA 0.999](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (FID **2.23**) and [CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (FID **1.91**).
+We use the above trained checkpoints for [CIFAR-10 uncond EMA 0.999](https://drive.google.com/file/d/1bJhg0VI3wfdhP0CN92tzzLub3BPWONyr/view?usp=drive_link) (FID **2.23**) and [CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1o1G9WupCfD5f5UcWwST1VjGUsL9r9LwH/view?usp=drive_link) (FID **1.91**). Do not forget to change the default `finetune_ema` in the script if using other checkpoints.
 
 2) Run fine-tuning:
 
@@ -210,8 +211,9 @@ We use the best checkpoint for [CIFAR-10 uncond EMA 0.999](https://drive.google.
 bash run.sh cifar10-uncond-distil-finetune
 bash run.sh cifar10-cond-distil-finetune
 ```
-We provide the fine-tuned checkpoints for [CIFAR-10 uncond EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link) (FID **1.91**) and [CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link) (FID **1.77**).
+We provide the fine-tuned checkpoints for [FT CIFAR-10 uncond EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link) (FID **1.91**) and [FT CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link) (FID **1.77**).
 
+Note that in the original paper, we used only a single EMA 0.999 across all experiments! Specifically, we distilled the above EMA 0.999 checkpoints and reported slightly worse results for fine-tuning EMA 0.999.
 
 ---
 
