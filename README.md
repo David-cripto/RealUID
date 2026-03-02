@@ -78,6 +78,7 @@ pip install -r requirements.txt
 python3 generate_samples.py \
   --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
+  --ema_decay 0.9999 \
   --dataset cifar10 \
   --cond uncond \
   --output_dir ./results \
@@ -90,6 +91,7 @@ python3 generate_samples.py \
 python3 generate_samples.py \
   --model_ckpt_path /path/to/checkpoint.pt \
   --mode multi_step \
+  --ema_decay 0.999 \
   --dataset cifar10 \
   --cond uncond \
   --output_dir ./results \
@@ -104,6 +106,7 @@ python3 generate_samples.py \
 python3 eval_model.py \
   --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
+  --ema_decay 0.9999 \
   --dataset cifar10 \
   --cond uncond \
   --output_dir ./results
@@ -115,6 +118,7 @@ python3 eval_model.py \
 python3 eval_model.py \
   --model_ckpt_path /path/to/checkpoint.pt \
   --mode multi_step \
+  --ema_decay 0.999 \
   --dataset cifar10 \
   --cond uncond \
   --output_dir ./results
@@ -126,6 +130,7 @@ python3 eval_model.py \
 python3 eval_model.py \
   --model_ckpt_path /path/to/checkpoint.pt \
   --mode one_step \
+  --ema_decay 0.999 \
   --dataset celeba \
   --cond uncond \
   --celeba_dir ./data/cut_celeba_full \
