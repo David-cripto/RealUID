@@ -213,7 +213,7 @@ bash run.sh cifar10-cond-distil-finetune
 ```
 We provide the fine-tuned checkpoints for [FT CIFAR-10 uncond EMA 0.9999](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link) (FID **1.91**) and [FT CIFAR-10 cond EMA 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link) (FID **1.77**).
 
-Note that in the original paper, we used only a single EMA 0.999 across all experiments! Specifically, we distilled the above EMA 0.999 checkpoints and reported slightly worse results for fine-tuning EMA 0.999.
+Note that in the original paper, we used only a single EMA 0.999 across all experiments! Specifically, we fined-tuned the above EMA 0.999 checkpoints and reported slightly worse results for fine-tuning EMA 0.999.
 
 ---
 
