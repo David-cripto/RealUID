@@ -1,6 +1,6 @@
 # RealUID
 
-Official PyTorch implementation and pretrained checkpoints for our **ICLR 2026 Oral** paper, **“Universal Inverse Distillation for Matching Models with Real-Data Supervision (No GANs)”**, which introduces **RealUID**, an adversarial flow-matching distillation approach for **one-step image generation**.
+Official PyTorch implementation and pretrained checkpoints for our **ICLR 2026 Oral** paper, **“Universal Inverse Distillation for Matching Models with Real-Data Supervision (No GANs)”**, which introduces **RealUID**, an alternative adversarial flow-matching distillation approach for **one-step image generation**.
 
 > [Universal Inverse Distillation for Matching Models with Real-Data Supervision (No GANs)](https://arxiv.org/abs/2509.22459),  
 > Nikita Kornilov, David Li, Tikhon Mavrin, Aleksei Leonov, Nikita Gushchin, Evgeny Burnaev, Iaroslav Koshelev, Alexander Korotin  
@@ -17,14 +17,14 @@ This codebase supports:
 - Optional **RealUID + GAN** training
 - **Sampling** and **FID evaluation** scripts
 
-Datasets:
+Datasets and best checkpoints:
 
-- **CIFAR-10**: unconditional + class-conditional
-- **CelebA**: unconditional (expects a preprocessed folder of images)
+- **CIFAR-10**: unconditional (FID - **1.91**, [link, ema 0.9999](https://drive.google.com/file/d/1dlumJCbrhceH5EDnndIm_e-RSpANtSr9/view?usp=drive_link)) + class-conditional (FID - **1.77**, [link](https://drive.google.com/file/d/14uuzac_2RLBNvCJLbpvPffX2lsFss8Un/view?usp=drive_link))
+- **CelebA**: unconditional (FID - **0.89**, [link](https://drive.google.com/file/d/16DXaPd79V-Vp6gDAGfTSKB52DJhlFTIc/view?usp=drive_link)), expects a preprocessed folder of images
 
 ---
 
-## Checkpoints and data
+## Data and teachers
 
 1) Create the expected folders:
 
@@ -32,12 +32,12 @@ Datasets:
 mkdir -p model_checkpoints data
 ```
 
-2) Download [pretrained checkpoints](https://drive.google.com/drive/folders/1PjZPmnk31eUTjbLHddwl8tjGt2apNO_P?usp=sharing) to `./model_checkpoints/`:
+2) Download [pretrained teacher checkpoints](https://drive.google.com/drive/folders/177Ptl41gfXw5VgZp-ex3l08Lr0dSuiUR?usp=drive_link) to `./model_checkpoints/`:
 
 
 3) CelebA dataset:
 
-- Download [dataset](https://drive.google.com/drive/folders/1PjZPmnk31eUTjbLHddwl8tjGt2apNO_P?usp=sharing) `cut_celeba_full.zip` and extract it to:
+- Download [dataset](https://drive.google.com/file/d/1kXAgcRQhhZ9ZgZTDfDD0dlyax5uoJY2k/view?usp=drive_link) `cut_celeba_full.zip` and extract it to:
 
 ```bash
 unzip cut_celeba_full.zip -d data/cut_celeba_full
