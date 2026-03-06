@@ -12,15 +12,15 @@ def dist_loss(u, u_star, t, x0, x1_gen, x1_data, y = None, alpha = 1.0, beta = 1
     u_xt_gen = u(t, xt_gen, y)
         
     if not generator_turn:
-        xt_data =  t_padded * x1_data + (1 - t_padded) * x0
-        u_xt_data = u(t, xt_data, y)
         
         loss = - alpha * torch.sum((u_xt_gen - beta/alpha * (x1_gen - x0))**2)
         
         if alpha != 1.0:
-            loss = loss - (1.0 - alpha) * torch.sum((u_xt_data - (1.0 - beta)/( 1.0 - alpha) * (x1_data - x0))**2)
-        else:
-            loss = loss + 2 * (1.0 - beta) * torch.sum(u_xt_data * (x1_data - x0))
+            xt_data =  t_padded * x1_data + (1 - t_padded) * x0
+            u_xt_data = u(t, xt_data, y)
+            
+            loss = loss - (1 - alpha) * torch.sum((u_xt_data - (1 - beta)/(1 - alpha) * (x1_data - x0))**2)
+        
     else:
         u_star_xt_gen = u_star(t, xt_gen, y)
         loss = alpha * torch.sum((u_star_xt_gen - beta/alpha * (x1_gen - x0))**2) - alpha * torch.sum((u_xt_gen - beta/alpha * (x1_gen - x0))**2)
