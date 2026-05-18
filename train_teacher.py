@@ -276,6 +276,7 @@ with trange(init_step, total_steps, dynamic_ncols=True) as pbar:
         t_padded = pad_t_like_x(t, x0) 
         xt_data =   x1_data * t_padded + (1 - t_padded) * x0
 
+        optim.zero_grad()
         loss = F.mse_loss(x1_data - x0, u(t, xt_data, y))    
             
         loss.backward()
